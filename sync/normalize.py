@@ -34,6 +34,8 @@ HOLY_DAY_BIT = 16
 
 # NYC (100-104 Manhattan/SI/Bronx, 110-116 Queens/Brooklyn) + Long Island (110-119).
 # 105-108 is Westchester, which is deliberately excluded.
+US_COUNTRIES = {"united states", "puerto rico"}
+
 REGION_ZIP3 = {
     "nyc-li": {"100", "101", "102", "103", "104", "110", "111", "112", "113",
                "114", "115", "116", "117", "118", "119"},
@@ -161,6 +163,8 @@ def timezone_for(lat: float, lng: float) -> str:
 
 
 def in_region(church: dict, region: str) -> bool:
+    if region == "us":
+        return (church.get("country") or "").lower() in US_COUNTRIES
     if (church.get("state") or "").lower() not in {"new york", "ny"}:
         return False
     zip3 = (church.get("postal_code") or "")[:3]

@@ -27,6 +27,21 @@ from sync.normalize import in_region, normalize_church
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# Adaptive regions: a grid of large cells; any cell whose search hits the page cap while still
+# inside the cell (a dense area with US churches) is split into four, down to min_cell_deg.
+ADAPTIVE_REGIONS = {
+    "us": {
+        "boxes": [
+            {"name": "lower48", "south": 24.0, "north": 49.5, "west": -125.0, "east": -66.5, "cell_deg": 1.0},
+            {"name": "alaska", "south": 54.0, "north": 71.5, "west": -168.0, "east": -130.0, "cell_deg": 2.0},
+            {"name": "hawaii", "south": 18.5, "north": 22.5, "west": -160.5, "east": -154.5, "cell_deg": 1.0},
+            {"name": "puerto-rico", "south": 17.8, "north": 18.6, "west": -67.4, "east": -65.2, "cell_deg": 0.5},
+        ],
+        "min_cell_deg": 0.03,
+        "page_cap": 8,
+    },
+}
+
 REGIONS = {
     # NYC five boroughs + Nassau + Suffolk. The box also catches NJ, Westchester and CT,
     # which in_region() filters out by state and ZIP.
@@ -83,6 +98,87 @@ def fetch_point(client, run_dir: Path, lat: float, lng: float, radius: float, of
         if len(rows) < PAGE_SIZE or float(rows[-1].get("distance") or 0) > radius:
             return
     stats["errors"].append(f"{lat},{lng}: hit {MAX_PAGES_PER_POINT}-page cap; shrink cell_mi")
+
+
+def fetch_cell(client, run_dir: Path, lat: float, lng: float, radius: float, cap: int, offline: bool, stats: dict):
+    """Page out from (lat, lng) up to `cap` pages. Returns (rows, covered): covered means every church
+    within `radius` was seen (a short page, or the last result already past the radius)."""
+    rows_all: list[dict] = []
+    for page in range(1, cap + 1):
+        path = page_path(run_dir, lat, lng, page)
+        if path.exists():
+            rows = json.loads(gzip.decompress(path.read_bytes()))
+        elif offline:
+            return rows_all, True
+        else:
+            rows = client.search_page(lat, lng, page)
+            stats["requests"] += 1
+            path.write_bytes(gzip.compress(json.dumps(rows).encode()))
+        rows_all.extend(rows)
+        if len(rows) < PAGE_SIZE or float(rows[-1].get("distance") or 0) > radius:
+            return rows_all, True
+    return rows_all, False
+
+
+def crawl_adaptive(region: str, run_dir: Path, offline: bool, max_cells: int | None = None) -> dict:
+    cfg = ADAPTIVE_REGIONS[region]
+    run_dir.mkdir(parents=True, exist_ok=True)
+    stack: list[tuple[float, float, float, float]] = []  # (south, west, dlat, dlng), processed depth-first
+    for box in reversed(cfg["boxes"]):
+        d = box["cell_deg"]
+        rows = math.ceil((box["north"] - box["south"]) / d)
+        cols = math.ceil((box["east"] - box["west"]) / d)
+        for i in reversed(range(rows)):
+            for j in reversed(range(cols)):
+                stack.append((box["south"] + i * d, box["west"] + j * d, d, d))
+
+    stats = {"region": region, "cells": 0, "splits": 0, "requests": 0, "raw_rows": 0, "errors": [],
+             "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    found: dict[str, dict] = {}
+    t0 = time.monotonic()
+    failures = 0
+
+    with MassTimesClient() as client:
+        while stack:
+            if max_cells and stats["cells"] >= max_cells:
+                break
+            south, west, dlat, dlng = stack.pop()
+            lat, lng = round(south + dlat / 2, 3), round(west + dlng / 2, 3)
+            radius = haversine_mi(lat, lng, south + dlat, west + dlng) * 1.05 + 0.1
+            try:
+                rows, covered = fetch_cell(client, run_dir, lat, lng, radius, cfg["page_cap"], offline, stats)
+                failures = 0
+            except Exception as e:  # noqa: BLE001
+                failures += 1
+                stats["errors"].append(f"{lat},{lng}: {e}")
+                if failures >= MAX_CONSECUTIVE_FAILURES:
+                    stats["aborted"] = True
+                    print(f"Stopping: {failures} consecutive failures", file=sys.stderr)
+                    break
+                continue
+            stats["cells"] += 1
+            us_inside = False
+            for raw in rows:
+                stats["raw_rows"] += 1
+                c = normalize_church(raw)
+                if c and in_region(c, region):
+                    c["region"] = region
+                    found.setdefault(c["match_key"], c)
+                    us_inside = us_inside or float(raw.get("distance") or 0) <= radius
+            if not covered and us_inside and dlat / 2 >= cfg["min_cell_deg"]:
+                stats["splits"] += 1
+                h, w = dlat / 2, dlng / 2
+                stack.extend([(south + h, west + w, h, w), (south + h, west, h, w), (south, west + w, h, w), (south, west, h, w)])
+            if stats["cells"] % 25 == 0:
+                print(f"  {stats['cells']} cells ({len(stack)} queued, {stats['splits']} splits) · {stats['requests']} requests · "
+                      f"{len(found)} churches · {time.monotonic() - t0:.0f}s", file=sys.stderr, flush=True)
+
+    churches = sorted(found.values(), key=lambda c: (c.get("state") or "", c.get("city") or "", c["name"]))
+    flag_suspect_coordinates(churches)
+    stats.update(churches=len(churches), seconds=round(time.monotonic() - t0), queued_left=len(stack),
+                 complete=not stack and not stats.get("aborted"),
+                 finished_at=datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    return {"stats": stats, "churches": churches}
 
 
 def flag_suspect_coordinates(churches: list[dict]) -> None:
@@ -145,7 +241,8 @@ def crawl(region: str, run_dir: Path, max_points: int | None, offline: bool) -> 
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--region", default="nyc-li", choices=REGIONS)
+    p.add_argument("--region", default="nyc-li", choices=[*REGIONS, *ADAPTIVE_REGIONS])
+    p.add_argument("--max-cells", type=int, help="adaptive regions: stop after N cells (testing)")
     p.add_argument("--run-dir", type=Path, help="raw page cache (default: new data/raw/<timestamp>)")
     p.add_argument("--max-points", type=int, help="only query the first N grid points (testing)")
     p.add_argument("--offline", action="store_true", help="use cached pages only; never fetch")
@@ -154,7 +251,10 @@ def main(argv=None) -> int:
 
     run_dir = (args.run_dir or ROOT / "data" / "raw" / datetime.now().strftime("%Y%m%d-%H%M%S")).resolve()
     out = (args.out or ROOT / "data" / f"churches-{args.region}.json").resolve()
-    result = crawl(args.region, run_dir, args.max_points, args.offline)
+    if args.region in ADAPTIVE_REGIONS:
+        result = crawl_adaptive(args.region, run_dir, args.offline, args.max_cells)
+    else:
+        result = crawl(args.region, run_dir, args.max_points, args.offline)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=1, ensure_ascii=False))
 
