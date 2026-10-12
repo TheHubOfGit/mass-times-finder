@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "@fontsource-variable/newsreader";
+@import "@fontsource-variable/figtree";
+@import "@fontsource/marcellus";
+@import "@fontsource-variable/nunito-sans";
+@import "@fontsource/spectral/400.css";
+@import "@fontsource/spectral/400-italic.css";
+@import "@fontsource/spectral/500.css";
+@import "@fontsource/spectral/600.css";
+@import "@fontsource/spectral-sc/500.css";
+@import "@fontsource/spectral-sc/600.css";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --bg: #f7f3ec;
+  --surface: #ffffff;
+  --surface-2: #efe8dc;
+  --ink: #1f1b17;
+  --muted: #6e655b;
+  --line: #e3dacb;
+  --accent: #8c2f39;
+  --accent-soft: #f3e2e1;
+  --accent-ink: #ffffff;
+  --gold: #a87a22;
+  --now: #2f7d5b;
+  --now-soft: #e0f0e7;
+  --shadow: 0 1px 2px rgb(60 40 20 / 0.06), 0 6px 24px -8px rgb(60 40 20 / 0.12);
+  --serif-family: "Newsreader Variable", Georgia, serif;
+  --sans-family: "Figtree Variable", system-ui, sans-serif;
+  --heading-family: var(--serif-family);
+  --card-radius: 1.5rem;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #13110e;
+  --surface: #1c1915;
+  --surface-2: #27231d;
+  --ink: #f3eee6;
+  --muted: #a69c8f;
+  --line: #342e27;
+  --accent: #e0848d;
+  --accent-soft: #3a2326;
+  --accent-ink: #1c0c0e;
+  --gold: #e0b45a;
+  --now: #6bc99b;
+  --now-soft: #17322a;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px -10px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+/* ---------- Style: Marian rosary (Settings → Style) ---------- */
+:root[data-style="rosary"] {
+  --bg: #eef3fb;
+  --surface: #ffffff;
+  --surface-2: #e3ecf9;
+  --ink: #15233d;
+  --muted: #4a5d80;
+  --line: #d6e2f4;
+  --accent: #2b5ca8;
+  --accent-soft: #dfe9f8;
+  --accent-ink: #ffffff;
+  --gold: #8a6a1e;
+  --now: #2f7d5b;
+  --now-soft: #e0f0e7;
+  --bead: #9fb6dc;
+  --shadow: 0 1px 2px rgb(30 60 120 / 0.06), 0 8px 24px -10px rgb(30 60 120 / 0.18);
+  --serif-family: "Marcellus", Georgia, serif;
+  --sans-family: "Nunito Sans Variable", system-ui, sans-serif;
+  --heading-family: "Marcellus", Georgia, serif;
+  --card-radius: 1.75rem;
+}
+:root[data-style="rosary"][data-theme="dark"] {
+  --bg: #0e1626;
+  --surface: #162238;
+  --surface-2: #1e2d48;
+  --ink: #e8eef9;
+  --muted: #9eb0cf;
+  --line: #263856;
+  --accent: #8fb3ec;
+  --accent-soft: #1f3356;
+  --accent-ink: #0e1626;
+  --gold: #e0b45a;
+  --now: #6bc99b;
+  --now-soft: #17322a;
+  --bead: #3d5682;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px -10px rgb(0 0 0 / 0.6);
+}
+
+/* ---------- Style: Gothic cathedral (Settings → Style) ---------- */
+:root[data-style="cathedral"] {
+  --bg: #ece8e1;
+  --surface: #f7f5f0;
+  --surface-2: #e2ddd3;
+  --ink: #23211f;
+  --muted: #6b655c;
+  --line: #d3cdc2;
+  --accent: #9a6512;
+  --accent-soft: #f1e3c8;
+  --accent-ink: #ffffff;
+  --gold: #9a6512;
+  --now: #2f7d5b;
+  --now-soft: #e0f0e7;
+  --shadow: 0 1px 2px rgb(40 30 20 / 0.08), 0 8px 24px -10px rgb(40 30 20 / 0.2);
+  --serif-family: "Spectral", Georgia, serif;
+  --sans-family: "Spectral", Georgia, serif;
+  --heading-family: "Spectral SC", "Spectral", Georgia, serif;
+  --card-radius: 0.375rem;
+}
+:root[data-style="cathedral"][data-theme="dark"] {
+  --bg: #1f1e22;
+  --surface: #2c2a30;
+  --surface-2: #36333b;
+  --ink: #ece6da;
+  --muted: #a39b8e;
+  --line: #3e3a44;
+  --accent: #f2b544;
+  --accent-soft: #3a3020;
+  --accent-ink: #1f1e22;
+  --gold: #f2b544;
+  --now: #8fd3a8;
+  --now-soft: #1f3328;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 8px 28px -10px rgb(0 0 0 / 0.65);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-now: var(--now);
+  --color-now-soft: var(--now-soft);
+  --font-serif: var(--serif-family);
+  --font-sans: var(--sans-family);
+  --font-heading: var(--heading-family);
+  --shadow-card: var(--shadow);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans-family);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* MapLibre popups and controls, themed */
+.maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: var(--shadow);
+}
+.maplibregl-popup-tip {
+  border-top-color: var(--surface) !important;
+  border-bottom-color: var(--surface) !important;
+}
+.maplibregl-ctrl-group {
+  background: var(--surface);
+  border-radius: 12px;
+}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: var(--ctrl-filter, none);
+}
+:root[data-theme="dark"] {
+  --ctrl-filter: invert(1);
+}
+.maplibregl-ctrl-attrib {
+  font-size: 10px;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--now);
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse::after { animation: none; }
+}

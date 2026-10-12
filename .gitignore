@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/
+.wrangler/
+node_modules/
+.pages-bundle/
+dist/
+.DS_Store
+*.log
+.vscode/
+.idea/
+worker/.dev.vars
+.dev.vars
+private/

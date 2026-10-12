@@ -1,0 +1,17 @@
+{
+  // Cloudflare Pages project: serves the PWA from dist/ and runs the API + MCP server (dist/_worker.js).
+  "$schema": "../worker/node_modules/wrangler/config-schema.json",
+  "name": "masstimes",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "masstimes",
+      "database_id": "c457fbd7-a022-488e-84a3-1d50dc241e8b",
+      "migrations_dir": "../db/migrations"
+    }
+  ],
+  "vars": { "CONTACT_EMAIL": "contact@example.com" }
+}

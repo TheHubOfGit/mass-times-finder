@@ -1,0 +1,152 @@
+[
+  {
+    "case": "app-user-agent",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:10 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRMM7MYCF63SYQBF7ZPPEB",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "chrome-user-agent",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:13 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRMPF8HAQMV0E6DWZYC4ZP",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "chrome-headers",
+    "status": 200,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "access-control-allow-origin": "masstimes.org",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Mon, 12 Oct 2026 19:15:15 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRMRRMDTXC1J73QWCXYHA0",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "[{\"church_address_city_name\":\"Hempstead\",\"church_address_country_territory_name\":\"United States\",\"church_address_county\"",
+    "rows": 30
+  },
+  {
+    "case": "app-with-referer",
+    "status": 200,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "access-control-allow-origin": "masstimes.org",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Mon, 12 Oct 2026 19:15:34 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRNBA7RRQT3PXZJAX7DRHZ",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "[{\"church_address_city_name\":\"Hempstead\",\"church_address_country_territory_name\":\"United States\",\"church_address_county\"",
+    "rows": 30
+  },
+  {
+    "case": "app-with-fetch-metadata",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:36 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRNDW2CATW2JTMNRZF1ZJM",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "app-with-accept-language",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:39 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRNG4B1MC522VC7CR2XAKT",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "app-with-accept-variant",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:41 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRNJC2Q6G2T8WWXTDZDTJC",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "control-no-referer-repeat",
+    "status": 403,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "content-encoding": "gzip",
+      "content-type": "text/plain;charset=UTF-8",
+      "date": "Mon, 12 Oct 2026 19:15:59 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRP40VVVFFZKMARW6RH9Y8",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "403 Forbidden"
+  },
+  {
+    "case": "app-with-referer-repeat",
+    "status": 200,
+    "http_version": "HTTP/1.1",
+    "headers": {
+      "access-control-allow-origin": "masstimes.org",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Mon, 12 Oct 2026 19:16:02 GMT",
+      "server": "Netlify",
+      "strict-transport-security": "max-age=31536000",
+      "vary": "Accept-Encoding",
+      "x-nf-request-id": "01M4RRP6BVN5ZGFYQ03C2ZK1DG",
+      "transfer-encoding": "chunked"
+    },
+    "body_preview": "[{\"church_address_city_name\":\"Hempstead\",\"church_address_country_territory_name\":\"United States\",\"church_address_county\"",
+    "rows": 30
+  }
+]

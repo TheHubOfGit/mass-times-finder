@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "masstimes",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "masstimes",
+      // Placeholder until `wrangler d1 create masstimes` is run for the remote deploy (M6).
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "../db/migrations"
+    }
+  ],
+  // Per-IP limits that protect the free-tier quota. Public, read-only, no auth.
+  "ratelimits": [
+    { "name": "API_LIMITER", "namespace_id": "1001", "simple": { "limit": 120, "period": 60 } },
+    { "name": "MCP_LIMITER", "namespace_id": "1002", "simple": { "limit": 30, "period": 60 } },
+    // Global cap on live requests to MassTimes (all users combined).
+    { "name": "MASSTIMES_LIMITER", "namespace_id": "1003", "simple": { "limit": 60, "period": 60 } }
+  ],
+  "vars": { "CONTACT_EMAIL": "contact@example.com" },
+  "observability": { "enabled": true }
+}

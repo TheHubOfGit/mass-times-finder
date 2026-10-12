@@ -1,0 +1,1170 @@
+{
+ "raw": [
+  {
+   "church_address_city_name": "Hempstead",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": "Nassau",
+   "church_address_postal_code": "11550",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "709 Front Street",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1357909",
+     "is_perpetual": false,
+     "language": "Ukrainian",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1196543",
+     "is_perpetual": false,
+     "language": "English",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "11:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1593146",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "08:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Weekdays  ",
+     "id": "1593145",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Stamford [Ukrainian]",
+   "diocese_type_name": "Diocese",
+   "directions": "",
+   "email": "stvladimir@optonline.net",
+   "id": "78406",
+   "language_name": "English ",
+   "last_update": "10/23/2024 5:37:54 PM",
+   "lat_long_source": null,
+   "latitude": "40.7092071989197",
+   "longitude": "-73.6059498432149",
+   "military_time": true,
+   "name": "St. Vladimir [Ukrainian]",
+   "pastors_name": " Reverend Wasyl Hrynkiw, Administrator",
+   "phone_number": "(516) 481-7717",
+   "rite_type_name": "Ukrainian",
+   "url": "http://www.stamforddio.org/new-york-state-parishes",
+   "wheel_chair_access": true,
+   "distance": "0.640816880461556",
+   "resultID": 1
+  },
+  {
+   "church_address_city_name": "Hempstead",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": null,
+   "church_address_postal_code": "11550",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "384 Clinton St, Hempstead, NY ",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1774997",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "10:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1774998",
+     "is_perpetual": false,
+     "language": "English",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "11:30:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Monday    ",
+     "id": "1774991",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Tuesday   ",
+     "id": "1774992",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Wednesday ",
+     "id": "1774993",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Thursday  ",
+     "id": "1774994",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Friday    ",
+     "id": "1774995",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "19:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1774996",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "10:00:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Saint Thomas the Apostle of Chicago [Syro-Malabar]",
+   "diocese_type_name": "Eparchy",
+   "directions": null,
+   "email": "pathrosachan@gmail.com",
+   "id": "134555",
+   "language_name": "Malayalam",
+   "last_update": "9/11/2026 4:52:36 AM",
+   "lat_long_source": "Google Map Manual",
+   "latitude": "40.717588469262",
+   "longitude": "-73.6205074147802",
+   "military_time": true,
+   "name": "St. Stephen's Knanaya Catholic Forane Church",
+   "pastors_name": "Fr. Patros Champakkara",
+   "phone_number": "+1(929) 825-0827",
+   "rite_type_name": "Syro-Malabar",
+   "url": "http://www.sskcfc.org/",
+   "wheel_chair_access": null,
+   "distance": "0.971670220039657",
+   "resultID": 2
+  },
+  {
+   "church_address_city_name": "Merrick",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": "Nassau",
+   "church_address_postal_code": "11566",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "2323 Merrick Avenue",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "",
+     "day_of_week": null,
+     "id": "1641658",
+     "is_perpetual": true,
+     "language": null,
+     "service_typename": "Adorations",
+     "time_end": "",
+     "time_start": ""
+    },
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1175352",
+     "is_perpetual": false,
+     "language": "English ",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "07:30:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1175351",
+     "is_perpetual": false,
+     "language": "English ",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "09:30:00"
+    },
+    {
+     "comment": "Miraculous Medal Novena",
+     "day_of_week": "Monday    ",
+     "id": "1641659",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "Sacred Heart Novena. First Fri.",
+     "day_of_week": "Friday    ",
+     "id": "1641661",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "09:30:00"
+    },
+    {
+     "comment": "Fatima Novena. First Sat.",
+     "day_of_week": "Saturday  ",
+     "id": "1641667",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Week Days",
+     "time_end": "",
+     "time_start": "08:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1515051",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Confessions",
+     "time_end": "16:00:00",
+     "time_start": "15:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1175353",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "16:00:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Rockville Centre",
+   "diocese_type_name": "Diocese",
+   "directions": "2 blocks south of Sunrise Hwy. (Rt. 27), best to enter parking lot on Hewlett Ave side.",
+   "email": "rectory@cureofarschurch.org",
+   "id": "75747",
+   "language_name": "English ",
+   "last_update": "8/20/2026 6:39:07 AM",
+   "lat_long_source": null,
+   "latitude": "40.6612169732273",
+   "longitude": "-73.5505951511045",
+   "military_time": false,
+   "name": "Curé of Ars",
+   "pastors_name": "Msgr. Frank Caldwell",
+   "phone_number": "(516) 623-1400",
+   "rite_type_name": "Roman-Latin",
+   "url": null,
+   "wheel_chair_access": true,
+   "distance": "4.75914644687019",
+   "resultID": 26
+  },
+  {
+   "church_address_city_name": "Garden City",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": null,
+   "church_address_postal_code": "11530",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "130 Fifth Street",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "mid-September to mid-June only",
+     "day_of_week": "Sunday    ",
+     "id": "1641230",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "10:00:00"
+    },
+    {
+     "comment": "Eve of First Fridays and Holy Days",
+     "day_of_week": "Thursday  ",
+     "id": "1175023",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Confessions",
+     "time_end": "17:00:00",
+     "time_start": "16:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Friday    ",
+     "id": "1498665",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Adorations",
+     "time_end": "15:00:00",
+     "time_start": "13:00:00"
+    },
+    {
+     "comment": "2nd, 3rd & 4th Saturdays of the month",
+     "day_of_week": "Saturday  ",
+     "id": "1175022",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Confessions",
+     "time_end": "09:30:00",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1498664",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "17:00:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Rockville Centre",
+   "diocese_type_name": "Diocese",
+   "directions": "Franklin Ave. between 4th & 5th St.",
+   "email": "msgrjswiader@stjosephsgc.com",
+   "id": "75726",
+   "language_name": "English ",
+   "last_update": "8/19/2026 7:42:16 AM",
+   "lat_long_source": null,
+   "latitude": "40.7219481873545",
+   "longitude": "-73.633435676939",
+   "military_time": false,
+   "name": "St. Joseph",
+   "pastors_name": "Very Rev. Andrzej Zglejszewski",
+   "phone_number": "(516) 747-3535",
+   "rite_type_name": "Roman-Latin",
+   "url": "http://www.stjosephchurchgc.org/",
+   "wheel_chair_access": true,
+   "distance": "1.67031570309973",
+   "resultID": 6
+  },
+  {
+   "church_address_city_name": "Hempstead",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": null,
+   "church_address_postal_code": "11550",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "18 Richardson Place",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "",
+     "day_of_week": "Sunday    ",
+     "id": "1175125",
+     "is_perpetual": false,
+     "language": "Polish",
+     "service_typename": "Weekend",
+     "time_end": "",
+     "time_start": "09:30:00"
+    },
+    {
+     "comment": "First Friday of month",
+     "day_of_week": "Friday    ",
+     "id": "1365201",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Confessions",
+     "time_end": "19:25:00",
+     "time_start": "19:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Weekdays  ",
+     "id": "1641256",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Holy Days",
+     "time_end": "",
+     "time_start": "09:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Weekdays  ",
+     "id": "1641257",
+     "is_perpetual": false,
+     "language": "Polish",
+     "service_typename": "Holy Days",
+     "time_end": "",
+     "time_start": "19:30:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Rockville Centre",
+   "diocese_type_name": "Diocese",
+   "directions": "From Southern State Parkway Exit 19N, go north on Peninsula Boulevard about two miles.  Turn right onto Front Street (Route 102).  Church is one block on right.",
+   "email": "contact@stladislaus.church",
+   "id": "75731",
+   "language_name": "English ",
+   "last_update": "8/19/2026 8:10:01 AM",
+   "lat_long_source": null,
+   "latitude": "40.7073631133023",
+   "longitude": "-73.6171788381362",
+   "military_time": true,
+   "name": "St. Ladislaus",
+   "pastors_name": "Rev. Marcin Nabozny",
+   "phone_number": "(516) 489-0368",
+   "rite_type_name": "Roman-Latin",
+   "url": "http://www.stladislaus.church/",
+   "wheel_chair_access": true,
+   "distance": "1.08255205655975",
+   "resultID": 3
+  },
+  {
+   "church_address_city_name": "Garden City",
+   "church_address_country_territory_name": "United States",
+   "church_address_county": null,
+   "church_address_postal_code": "11530",
+   "church_address_providence_name": "New York",
+   "church_address_street_address": "35 Dartmouth St.",
+   "church_type_name": "Parish",
+   "church_worship_times": [
+    {
+     "comment": "",
+     "day_of_week": "Weekdays  ",
+     "id": "1766413",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Holy Days",
+     "time_end": "",
+     "time_start": "07:30:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Weekdays  ",
+     "id": "1641217",
+     "is_perpetual": false,
+     "language": null,
+     "service_typename": "Vigil for Holy Days",
+     "time_end": "",
+     "time_start": "17:00:00"
+    },
+    {
+     "comment": "",
+     "day_of_week": "Saturday  ",
+     "id": "1175004",
+     "is_perpetual": false,
+     "language": "English ",
+     "service_typename": "Confessions",
+     "time_end": "16:45:00",
+     "time_start": "16:00:00"
+    }
+   ],
+   "comments": "",
+   "diocese_name": "Rockville Centre",
+   "diocese_type_name": "Diocese",
+   "directions": "Long Island Expy exit 34, south on New Hyde Park Rd. about 4 miles, Dartmouth St. is on left.",
+   "email": "kkern@stannesgc.org",
+   "id": "75725",
+   "language_name": "English ",
+   "last_update": "8/19/2026 7:32:51 AM",
+   "lat_long_source": null,
+   "latitude": "40.7185352770375",
+   "longitude": "-73.6785836128324",
+   "military_time": true,
+   "name": "St. Anne",
+   "pastors_name": "Monsignor Thomas Harold",
+   "phone_number": "(516) 352-5904",
+   "rite_type_name": "Roman-Latin",
+   "url": "www.stannesgc.org/",
+   "wheel_chair_access": true,
+   "distance": "4.02173724183124",
+   "resultID": 18
+  }
+ ],
+ "expected": [
+  {
+   "match_key": "st vladimir|40.709|-73.606",
+   "source_id": "78406",
+   "name": "St. Vladimir [Ukrainian]",
+   "street": "709 Front Street",
+   "city": "Hempstead",
+   "state": "New York",
+   "postal_code": "11550",
+   "county": "Nassau",
+   "country": "United States",
+   "lat": 40.709207,
+   "lng": -73.60595,
+   "timezone": "America/New_York",
+   "diocese": "Stamford [Ukrainian]",
+   "diocese_type": "Diocese",
+   "rite": "Ukrainian",
+   "church_type": "Parish",
+   "primary_language": "English",
+   "phone": "(516) 481-7717",
+   "email": "stvladimir@optonline.net",
+   "website": "http://www.stamforddio.org/new-york-state-parishes",
+   "wheelchair": 1,
+   "comments": null,
+   "directions": null,
+   "pastor": "Reverend Wasyl Hrynkiw, Administrator",
+   "services": [
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": "Ukrainian",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "11:00",
+     "end": null,
+     "language": "English",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      6
+     ],
+     "start": "08:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    }
+   ],
+   "languages": "|English|Ukrainian|",
+   "service_types": 1,
+   "has_perpetual_adoration": 0,
+   "source_updated_at": "2024-10-23T17:37:54"
+  },
+  {
+   "match_key": "st stephen s knanaya forane|40.718|-73.621",
+   "source_id": "134555",
+   "name": "St. Stephen's Knanaya Catholic Forane Church",
+   "street": "384 Clinton St, Hempstead, NY",
+   "city": "Hempstead",
+   "state": "New York",
+   "postal_code": "11550",
+   "county": null,
+   "country": "United States",
+   "lat": 40.717588,
+   "lng": -73.620507,
+   "timezone": "America/New_York",
+   "diocese": "Saint Thomas the Apostle of Chicago [Syro-Malabar]",
+   "diocese_type": "Eparchy",
+   "rite": "Syro-Malabar",
+   "church_type": "Parish",
+   "primary_language": "Malayalam",
+   "phone": "+1(929) 825-0827",
+   "email": "pathrosachan@gmail.com",
+   "website": "http://www.sskcfc.org/",
+   "wheelchair": null,
+   "comments": null,
+   "directions": null,
+   "pastor": "Fr. Patros Champakkara",
+   "services": [
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "10:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "11:30",
+     "end": null,
+     "language": "English",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      1
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      2
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      3
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      4
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      5
+     ],
+     "start": "19:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      6
+     ],
+     "start": "10:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    }
+   ],
+   "languages": "|English|Malayalam|",
+   "service_types": 1,
+   "has_perpetual_adoration": 0,
+   "source_updated_at": "2026-09-11T04:52:36"
+  },
+  {
+   "match_key": "cure ars|40.661|-73.551",
+   "source_id": "75747",
+   "name": "Curé of Ars",
+   "street": "2323 Merrick Avenue",
+   "city": "Merrick",
+   "state": "New York",
+   "postal_code": "11566",
+   "county": "Nassau",
+   "country": "United States",
+   "lat": 40.661217,
+   "lng": -73.550595,
+   "timezone": "America/New_York",
+   "diocese": "Rockville Centre",
+   "diocese_type": "Diocese",
+   "rite": "Roman-Latin",
+   "church_type": "Parish",
+   "primary_language": "English",
+   "phone": "(516) 623-1400",
+   "email": "rectory@cureofarschurch.org",
+   "website": null,
+   "wheelchair": 1,
+   "comments": null,
+   "directions": "2 blocks south of Sunrise Hwy. (Rt. 27), best to enter parking lot on Hewlett Ave side.",
+   "pastor": "Msgr. Frank Caldwell",
+   "services": [
+    {
+     "kind": "adoration",
+     "source_type": "Adorations",
+     "days": [],
+     "start": null,
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": true,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "confession",
+     "source_type": "Confessions",
+     "days": [
+      6
+     ],
+     "start": "15:00",
+     "end": "16:00",
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "07:30",
+     "end": null,
+     "language": "English",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "09:30",
+     "end": null,
+     "language": "English",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      1
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": "Miraculous Medal Novena",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      5
+     ],
+     "start": "09:30",
+     "end": null,
+     "language": null,
+     "comment": "Sacred Heart Novena. First Fri.",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Week Days",
+     "days": [
+      6
+     ],
+     "start": "08:00",
+     "end": null,
+     "language": null,
+     "comment": "Fatima Novena. First Sat.",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      6
+     ],
+     "start": "16:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    }
+   ],
+   "languages": "|English|",
+   "service_types": 7,
+   "has_perpetual_adoration": 1,
+   "source_updated_at": "2026-08-20T06:39:07"
+  },
+  {
+   "match_key": "st joseph|40.722|-73.633",
+   "source_id": "75726",
+   "name": "St. Joseph",
+   "street": "130 Fifth Street",
+   "city": "Garden City",
+   "state": "New York",
+   "postal_code": "11530",
+   "county": null,
+   "country": "United States",
+   "lat": 40.721948,
+   "lng": -73.633436,
+   "timezone": "America/New_York",
+   "diocese": "Rockville Centre",
+   "diocese_type": "Diocese",
+   "rite": "Roman-Latin",
+   "church_type": "Parish",
+   "primary_language": "English",
+   "phone": "(516) 747-3535",
+   "email": "msgrjswiader@stjosephsgc.com",
+   "website": "http://www.stjosephchurchgc.org/",
+   "wheelchair": 1,
+   "comments": null,
+   "directions": "Franklin Ave. between 4th & 5th St.",
+   "pastor": "Very Rev. Andrzej Zglejszewski",
+   "services": [
+    {
+     "kind": "adoration",
+     "source_type": "Adorations",
+     "days": [
+      5
+     ],
+     "start": "13:00",
+     "end": "15:00",
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "confession",
+     "source_type": "Confessions",
+     "days": [
+      4
+     ],
+     "start": "16:00",
+     "end": "17:00",
+     "language": null,
+     "comment": "Eve of First Fridays and Holy Days",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "confession",
+     "source_type": "Confessions",
+     "days": [
+      6
+     ],
+     "start": "09:00",
+     "end": "09:30",
+     "language": null,
+     "comment": "2nd, 3rd & 4th Saturdays of the month",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "10:00",
+     "end": null,
+     "language": null,
+     "comment": "mid-September to mid-June only",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      6
+     ],
+     "start": "17:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    }
+   ],
+   "languages": "|English|",
+   "service_types": 7,
+   "has_perpetual_adoration": 0,
+   "source_updated_at": "2026-08-19T07:42:16"
+  },
+  {
+   "match_key": "st ladislaus|40.707|-73.617",
+   "source_id": "75731",
+   "name": "St. Ladislaus",
+   "street": "18 Richardson Place",
+   "city": "Hempstead",
+   "state": "New York",
+   "postal_code": "11550",
+   "county": null,
+   "country": "United States",
+   "lat": 40.707363,
+   "lng": -73.617179,
+   "timezone": "America/New_York",
+   "diocese": "Rockville Centre",
+   "diocese_type": "Diocese",
+   "rite": "Roman-Latin",
+   "church_type": "Parish",
+   "primary_language": "English",
+   "phone": "(516) 489-0368",
+   "email": "contact@stladislaus.church",
+   "website": "http://www.stladislaus.church/",
+   "wheelchair": 1,
+   "comments": null,
+   "directions": "From Southern State Parkway Exit 19N, go north on Peninsula Boulevard about two miles.  Turn right onto Front Street (Route 102).  Church is one block on right.",
+   "pastor": "Rev. Marcin Nabozny",
+   "services": [
+    {
+     "kind": "confession",
+     "source_type": "Confessions",
+     "days": [
+      5
+     ],
+     "start": "19:00",
+     "end": "19:25",
+     "language": null,
+     "comment": "First Friday of month",
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Weekend",
+     "days": [
+      0
+     ],
+     "start": "09:30",
+     "end": null,
+     "language": "Polish",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Holy Days",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "start": "09:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": true,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Holy Days",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "start": "19:30",
+     "end": null,
+     "language": "Polish",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": true,
+     "vigil": false
+    }
+   ],
+   "languages": "|English|Polish|",
+   "service_types": 19,
+   "has_perpetual_adoration": 0,
+   "source_updated_at": "2026-08-19T08:10:01"
+  },
+  {
+   "match_key": "st anne|40.719|-73.679",
+   "source_id": "75725",
+   "name": "St. Anne",
+   "street": "35 Dartmouth St.",
+   "city": "Garden City",
+   "state": "New York",
+   "postal_code": "11530",
+   "county": null,
+   "country": "United States",
+   "lat": 40.718535,
+   "lng": -73.678584,
+   "timezone": "America/New_York",
+   "diocese": "Rockville Centre",
+   "diocese_type": "Diocese",
+   "rite": "Roman-Latin",
+   "church_type": "Parish",
+   "primary_language": "English",
+   "phone": "(516) 352-5904",
+   "email": "kkern@stannesgc.org",
+   "website": "https://www.stannesgc.org/",
+   "wheelchair": 1,
+   "comments": null,
+   "directions": "Long Island Expy exit 34, south on New Hyde Park Rd. about 4 miles, Dartmouth St. is on left.",
+   "pastor": "Monsignor Thomas Harold",
+   "services": [
+    {
+     "kind": "confession",
+     "source_type": "Confessions",
+     "days": [
+      6
+     ],
+     "start": "16:00",
+     "end": "16:45",
+     "language": "English",
+     "comment": null,
+     "perpetual": false,
+     "holy_day": false,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Holy Days",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "start": "07:30",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": true,
+     "vigil": false
+    },
+    {
+     "kind": "mass",
+     "source_type": "Vigil for Holy Days",
+     "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "start": "17:00",
+     "end": null,
+     "language": null,
+     "comment": null,
+     "perpetual": false,
+     "holy_day": true,
+     "vigil": true
+    }
+   ],
+   "languages": "|English|",
+   "service_types": 19,
+   "has_perpetual_adoration": 0,
+   "source_updated_at": "2026-08-19T07:32:51"
+  }
+ ]
+}
