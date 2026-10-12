@@ -158,7 +158,9 @@ async function cmdFind() {
     if (!date) fail(`Couldn't understand --date ${flags.date}`);
     const daysAhead = Math.round((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${todayNY()}T12:00:00Z`)) / 86400000);
     if (daysAhead < 0) fail("--date is in the past");
-    Object.assign(params, { date, days: daysAhead });
+    // Search just that day from its midnight (any future date works; the API window is 14 days).
+    const dayStart = new Date(`${date}T00:00:00`);
+    Object.assign(params, { date, days: 0, from: daysAhead > 0 ? dayStart.toISOString() : undefined });
   }
   const r = await get("/upcoming", params);
   out(r, r.results.length ? r.results.map(fmtOcc).join("\n") + "\n" + NOTE : `Nothing found.${NOTE}`);

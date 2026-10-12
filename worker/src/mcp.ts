@@ -153,7 +153,7 @@ export function createServer(env: Env): McpServer {
       const [y, m, dd] = d.split("-").map(Number);
       const startOfDay = zonedTimeToUtc(y, m, dd, 0, 0, DEFAULT_TZ);
       if (startOfDay > from) from = startOfDay;
-      days = Math.max(0, Math.ceil((startOfDay.getTime() - Date.now()) / 86400_000)) + 1;
+      days = 0; // `from` is that day's midnight (or now, if it's today): just that one local day
     }
     const limit = args.limit ?? 10;
     let occ: OccurrencePayload[] = [];

@@ -134,7 +134,7 @@ export function WhenChips({ onOpenFilters }: { onOpenFilters: () => void }) {
       ))}
       <Chip active={filters.when === "date"} onClick={() => dateRef.current?.showPicker?.() ?? dateRef.current?.focus()}>
         {filters.when === "date" && filters.date ? fmtDate(filters.date, { relative: false }).replace(/^\w+, /, "") : "Pick a date"}
-        <input ref={dateRef} type="date" min={today} max={addDays(today, 13)} className="sr-only" tabIndex={-1}
+        <input ref={dateRef} type="date" min={today} max={addDays(today, 365)} className="sr-only" tabIndex={-1}
           value={filters.date ?? ""} onChange={(e) => e.target.value && setFilters({ when: "date", date: e.target.value })} />
       </Chip>
     </div>

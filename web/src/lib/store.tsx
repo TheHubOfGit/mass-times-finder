@@ -158,8 +158,11 @@ export function upcomingQuery(f: Filters, loc: { lat: number; lng: number }) {
       };
     }
     case "date": {
+      // Search just the picked day (from its local midnight), so any future date works within the API's window.
       const date = f.date ?? today;
-      return { params: { ...base, date, days: daysUntil(date), limit: 300 }, keep: () => true };
+      const dayStart = new Date(`${date}T00:00:00`);
+      const from = dayStart.getTime() > Date.now() ? dayStart : new Date();
+      return { params: { ...base, date, from: from.toISOString(), days: 0, limit: 300 }, keep: () => true };
     }
   }
 }
