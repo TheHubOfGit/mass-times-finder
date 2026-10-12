@@ -2,12 +2,12 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { Attribution } from "../components/Shell";
-import { FilterSheet, KindTabs, LocationBar, useLocateMe, useUpcomingHolyDay, WhenChips } from "../components/Controls";
+import { FilterSheet, KindTabs, LocationBar, useLocateMe, useSpecialDayInView, useUpcomingHolyDay, WhenChips } from "../components/Controls";
 import { IconLocate, IconNearby, IconSearch, Logo } from "../components/icons";
-import { EmptyState, HolyDayBanner, NextUpCard, ResultList, SkeletonList, SortToggle } from "../components/Results";
+import { EmptyState, HolyDayBanner, NextUpCard, ResultList, SkeletonList, SortToggle, SpecialDayBanner } from "../components/Results";
 import { get, type Occurrence } from "../lib/api";
 import { fmtDate, KIND_LABEL } from "../lib/format";
-import { stateToSearch, upcomingQuery, useStore } from "../lib/store";
+import { datesInView, stateToSearch, upcomingQuery, useStore } from "../lib/store";
 
 const GRACE_MIN = 5;
 
@@ -26,6 +26,7 @@ export function Nearby() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const { locate, busy } = useLocateMe();
   const holyDay = useUpcomingHolyDay();
+  const specialDay = useSpecialDayInView(datesInView(filters));
 
   // Keep the URL shareable.
   useEffect(() => {
@@ -60,7 +61,8 @@ export function Nearby() {
 
       <div className="space-y-3">
         <LocationBar />
-        {holyDay && (
+        {specialDay && <SpecialDayBanner day={specialDay} />}
+        {holyDay && holyDay.date !== specialDay?.date && (
           <HolyDayBanner holyDay={holyDay} active={filters.when === "holyday" && filters.date === holyDay.date}
             onShow={() => setFilters({ when: "holyday", date: holyDay.date, kind: "mass" })} />
         )}

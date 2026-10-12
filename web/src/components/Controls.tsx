@@ -63,6 +63,12 @@ export function LocationBar() {
 
 const HOLY_DAY_WINDOW_DAYS = 14;
 
+/** The first special day (Christmas, Good Friday, a holy day…) among the dates in view, or null. */
+export function useSpecialDayInView(dates: string[]): import("../lib/api").SpecialDay | null {
+  const meta = useQuery({ queryKey: ["meta"], queryFn: ({ signal }) => get<Meta>("/meta", {}, signal), staleTime: 60 * 60_000 });
+  return meta.data?.special_days?.find((d) => dates.includes(d.date)) ?? null;
+}
+
 /** The next holy day (not on a Sunday) within two weeks, or null. */
 export function useUpcomingHolyDay(): HolyDay | null {
   const meta = useQuery({ queryKey: ["meta"], queryFn: ({ signal }) => get<Meta>("/meta", {}, signal), staleTime: 60 * 60_000 });

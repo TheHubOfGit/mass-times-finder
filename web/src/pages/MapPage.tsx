@@ -4,13 +4,13 @@ import type { GeoJSONSource, Map as MLMap, MapLayerMouseEvent } from "maplibre-g
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "wouter";
-import { FilterSheet, KindTabs, useLocateMe, WhenChips } from "../components/Controls";
+import { FilterSheet, KindTabs, useLocateMe, useSpecialDayInView, WhenChips } from "../components/Controls";
 import { IconLocate, IconMap } from "../components/icons";
-import { EmptyState, ResultList, SkeletonList, SortToggle } from "../components/Results";
+import { EmptyState, ResultList, SkeletonList, SortToggle, SpecialDayBanner } from "../components/Results";
 import { Attribution } from "../components/Shell";
 import { get, type Church, type Occurrence } from "../lib/api";
 import { fmtDate, fmtTime, KIND_LABEL, splitName } from "../lib/format";
-import { upcomingQuery, useStore } from "../lib/store";
+import { datesInView, upcomingQuery, useStore } from "../lib/store";
 
 maplibregl.setWorkerUrl(workerUrl);
 
@@ -70,6 +70,7 @@ export function MapPage() {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const { locate, busy } = useLocateMe();
+  const specialDay = useSpecialDayInView(datesInView(filters));
   const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 
   // Create the map once.
@@ -201,6 +202,7 @@ export function MapPage() {
         <WhenChips onOpenFilters={() => setFiltersOpen(true)} />
       </div>
       <div className="px-4 pt-3 pb-8">
+        {specialDay && <div className="mb-3"><SpecialDayBanner day={specialDay} /></div>}
         <div className="mb-2">
           <SortToggle count={filters.sort === "nearest" ? new Set(results.map((o) => o.church.id)).size : results.length}
             noun={upcoming.isFetching ? "· updating…" : filters.sort === "nearest" ? "churches in this area" : `${KIND_LABEL[filters.kind].toLowerCase()} times in this area`} />

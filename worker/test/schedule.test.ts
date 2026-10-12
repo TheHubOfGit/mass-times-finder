@@ -152,3 +152,46 @@ describe("holy-day schedule replaces the weekday schedule", () => {
     expect(occ.map((o) => o.localStart)).toEqual(["08:00"]);
   });
 });
+
+describe("special days and parish notes", () => {
+  const NY = "America/New_York";
+  const svc = (over: Partial<Service>): Service => ({
+    kind: "mass", source_type: "Week Days", days: [1, 2, 3, 4, 5], start: "08:00", end: null, language: null,
+    comment: null, perpetual: false, holy_day: false, vigil: false, ...over,
+  });
+
+  it("Good Friday and Holy Thursday: no regular weekday Masses; confession stays (flagged)", () => {
+    // Holy Week 2027: Holy Thursday Mar 25, Good Friday Mar 26
+    const services = [svc({}), svc({ kind: "confession", source_type: "Confessions", days: [5], start: "15:00", end: "16:00" })];
+    const occ = expandSchedule(services, NY, { from: new Date("2027-03-25T04:00:00Z"), days: 1, kinds: ["mass", "confession"] });
+    expect(occ.map((o) => `${o.localDate} ${o.service.kind}`)).toEqual(["2027-03-26 confession"]);
+    expect(occ[0]).toMatchObject({ specialDay: "Good Friday", regularSchedule: true });
+  });
+
+  it("Christmas: regular weekday Masses flagged, holy-day Masses not", () => {
+    const services = [svc({ days: [1, 2, 3, 4, 5], start: "08:00" }), svc({ source_type: "Holy Days", holy_day: true, start: "10:00" })];
+    // This church lists holy-day Masses, so its 8:00 weekday Mass is replaced on Christmas.
+    const withHoly = expandSchedule(services, NY, { from: new Date("2026-12-25T05:00:00Z"), days: 0, kinds: ["mass"] });
+    expect(withHoly.map((o) => [o.localStart, o.specialDay, o.regularSchedule])).toEqual([["10:00", "Christmas", false]]);
+    // A church without holy-day Masses keeps its weekday Mass, flagged as regular schedule.
+    const without = expandSchedule([services[0]], NY, { from: new Date("2026-12-25T05:00:00Z"), days: 0, kinds: ["mass"] });
+    expect(without.map((o) => [o.localStart, o.specialDay, o.regularSchedule])).toEqual([["08:00", "Christmas", true]]);
+  });
+
+  it("ordinary days carry no special-day flags", () => {
+    const occ = expandSchedule([svc({})], NY, { from: new Date("2026-10-13T04:00:00Z"), days: 0, kinds: ["mass"] });
+    expect(occ[0]).toMatchObject({ specialDay: null, regularSchedule: false });
+  });
+
+  it("applies parish notes: 'First Fri.' only on the first Friday", () => {
+    const occ = expandSchedule([svc({ kind: "adoration", source_type: "Adorations", days: [5], start: "19:00", end: "20:00", comment: "First Fri." })],
+      NY, { from: new Date("2026-10-01T04:00:00Z"), days: 30, kinds: ["adoration"] });
+    expect(occ.map((o) => o.localDate)).toEqual(["2026-10-02"]);
+  });
+
+  it("applies parish notes: 'Suppressed December 24 to January 1'", () => {
+    const occ = expandSchedule([svc({ comment: "*Suppressed from December 24 to January 1" })],
+      NY, { from: new Date("2026-12-21T05:00:00Z"), days: 14, kinds: ["mass"] });
+    expect(occ.map((o) => o.localDate)).toEqual(["2026-12-21", "2026-12-22", "2026-12-23", "2027-01-04"]);
+  });
+});

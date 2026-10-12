@@ -1,7 +1,7 @@
 // Business logic shared by the JSON API and the MCP server. Reads only from D1.
 
 import { ensureCoverage } from "./masstimes";
-import { expandSchedule, holyDayList, holyDaysBetween, type Occurrence, type Service, type ServiceKind } from "./schedule";
+import { expandSchedule, holyDayList, holyDaysBetween, specialDaysBetween, type Occurrence, type Service, type ServiceKind } from "./schedule";
 
 export interface Env {
   DB: D1Database;
@@ -96,6 +96,8 @@ function occurrencePayload(o: Occurrence, church: ChurchSummary) {
     language: o.service.language ?? church.primary_language,
     comment: o.service.comment,
     holy_day: o.holyDay,
+    special_day: o.specialDay,
+    regular_schedule: o.regularSchedule,
     seasonal: o.seasonal,
     in_progress: o.inProgress,
   };
@@ -331,6 +333,7 @@ export async function meta(env: Env) {
     last_sync: stats?.last_sync ?? null,
     regions: stats?.regions?.split(",") ?? [],
     holy_days: holyDayList(today, nextYear),
+    special_days: specialDaysBetween(today, nextYear),
     source: { name: SOURCE_NAME, url: "https://masstimes.org/", donate_url: "https://secure.masstimes.org/forms/donate" },
     confirm_note: CONFIRM_NOTE,
   };

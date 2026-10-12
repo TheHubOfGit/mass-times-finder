@@ -41,6 +41,8 @@ export interface Occurrence {
   language: string | null;
   comment: string | null;
   holy_day: string | null;
+  special_day: string | null;
+  regular_schedule: boolean;
   seasonal: boolean;
   in_progress: boolean;
 }
@@ -104,11 +106,19 @@ export interface HolyDay {
   onSunday: boolean;
 }
 
+export interface SpecialDay {
+  date: string;
+  name: string;
+  kind: "holy_day" | "feast";
+  obligatory: boolean;
+}
+
 export interface Meta {
   churches: number;
   last_sync: string | null;
   regions: string[];
   holy_days: HolyDay[];
+  special_days: SpecialDay[];
   source: { name: string; url: string; donate_url: string };
   confirm_note: string;
 }

@@ -126,7 +126,8 @@ function fmtOcc(o) {
   const c = o.church;
   const when = o.in_progress ? `Now (until ${fmtTime(o.local_end)})` : `${fmtDay(o.local_date, c.timezone)} ${fmtTime(o.local_start)}`;
   const kind = o.kind === "mass" ? "" : ` [${o.kind}]`;
-  const extra = [o.language, o.holy_day && `for ${o.holy_day}`, o.comment && `“${o.comment}”`].filter(Boolean).join(" · ");
+  const extra = [o.language, o.holy_day && `for ${o.holy_day}`, o.comment && `“${o.comment}”`,
+    o.regular_schedule && `regular schedule; ${o.special_day} times not listed`].filter(Boolean).join(" · ");
   const addr = [c.address.street, c.address.city].filter(Boolean).join(", ");
   return `${when.padEnd(16)} ${c.name}${kind}\n${" ".repeat(17)}${addr} · ${c.distance_mi?.toFixed(1)} mi${extra ? ` · ${extra}` : ""}`;
 }

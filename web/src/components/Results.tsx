@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "wouter";
-import type { HolyDay, Occurrence } from "../lib/api";
+import type { HolyDay, Occurrence, SpecialDay } from "../lib/api";
 import { addressLine, addDays, fmtDate, fmtDistance, fmtRelative, fmtTime, KIND_LABEL, localToday, splitName, timeParts } from "../lib/format";
 import { useStore } from "../lib/store";
 import { IconAccessible, IconChevron, IconInfo, IconRoute } from "./icons";
@@ -21,6 +21,12 @@ function OccBadges({ o, showKind, showAccess }: { o: Occurrence; showKind?: bool
     <>
       {o.in_progress && <Badge tone="now">Happening now</Badge>}
       {showKind && <Badge tone="accent">{KIND_LABEL[o.kind]}</Badge>}
+      {o.regular_schedule && (
+        <span title={`${o.special_day} times aren't listed for this parish. This is its regular schedule; confirm with the parish.`}
+          className="inline-flex items-center gap-1 rounded-md border border-dashed border-muted/60 px-1.5 py-0.5 text-[11px] font-semibold text-muted">
+          Regular schedule · confirm
+        </span>
+      )}
       {o.holy_day && <Badge tone="gold">{o.source_type?.startsWith("Vigil") ? `Vigil · ${o.holy_day}` : o.holy_day}</Badge>}
       {o.language && o.language !== "English" && <Badge>{o.language}</Badge>}
       {rite && <Badge>{rite}</Badge>}
@@ -319,6 +325,32 @@ export function HolyDayBanner({ holyDay, active, onShow }: { holyDay: HolyDay; a
           See Masses
         </button>
       )}
+    </section>
+  );
+}
+
+const SPECIAL_COPY: Record<string, string> = {
+  "Good Friday": "There is no Mass on Good Friday. Parishes hold the Celebration of the Lord's Passion, usually mid-afternoon, and many have Stations of the Cross.",
+  "Holy Thursday": "Parishes celebrate the evening Mass of the Lord's Supper instead of their regular Masses.",
+  "Holy Saturday": "There is no daytime Mass. The Easter Vigil begins after nightfall, usually later than the regular Saturday-evening Mass.",
+  "Christmas Eve": "Parishes publish special Christmas Eve and Midnight Mass times, usually in December bulletins and on their websites.",
+  Christmas: "Parishes publish special Christmas Day schedules, usually in December bulletins and on their websites.",
+  "Easter Sunday": "Many parishes add Masses on Easter Sunday.",
+  "Ash Wednesday": "Many parishes add Masses and services with the distribution of ashes.",
+  Thanksgiving: "Many parishes hold a single Thanksgiving morning Mass.",
+};
+
+/** Shown when the day being viewed has special schedules. */
+export function SpecialDayBanner({ day }: { day: SpecialDay }) {
+  const copy = SPECIAL_COPY[day.name] ?? (day.kind === "holy_day"
+    ? "Parishes that list holy-day Masses are shown with them; others show their regular schedule."
+    : "Parishes often run special schedules today.");
+  return (
+    <section aria-label={`${day.name} schedules`} className="rounded-[var(--card-radius)] border border-line bg-surface-2 px-4 py-3 text-[14px]">
+      <p className="font-heading font-semibold">{day.name} · {fmtDate(day.date)}</p>
+      <p className="mt-1 text-muted">
+        {copy} Times marked <span className="font-semibold text-ink">Regular schedule</span> come from the parish's usual week and may not apply. Please confirm with the parish.
+      </p>
     </section>
   );
 }

@@ -50,9 +50,25 @@ function fmtOccurrence(o: OccurrencePayload): string {
     o.language ? o.language : null,
     o.holy_day ? `for ${o.holy_day}` : null,
     o.comment ? `note: "${o.comment}"` : null,
+    o.regular_schedule ? `regular schedule; ${o.special_day} times not listed` : null,
   ];
   return bits.filter(Boolean).join(" · ");
 }
+
+/** One line per special day in the results: "Christmas: parishes publish special schedules…". */
+function specialDayNotes(list: OccurrencePayload[]): string[] {
+  const days = new Map<string, string>();
+  for (const o of list) if (o.special_day) days.set(o.special_day, o.local_date);
+  return [...days.keys()].map((name) => `${SPECIAL_NOTE[name] ?? `${name}: parishes often publish special schedules.`} Confirm with the parish.`);
+}
+
+const SPECIAL_NOTE: Record<string, string> = {
+  "Good Friday": "Good Friday: there is no Mass; parishes hold the Celebration of the Lord's Passion, usually mid-afternoon.",
+  "Holy Thursday": "Holy Thursday: parishes celebrate the evening Mass of the Lord's Supper instead of regular Masses.",
+  "Holy Saturday": "Holy Saturday: no daytime Mass; the Easter Vigil begins after nightfall.",
+  "Christmas Eve": "Christmas Eve: parishes publish special Christmas Eve and Midnight Mass times.",
+  Christmas: "Christmas: parishes publish special Christmas Day schedules.",
+};
 
 function footer(lastUpdated?: string | null): string {
   return `Source: ${SOURCE_NAME}${lastUpdated ? ` (parish data last updated ${lastUpdated.slice(0, 10)})` : ""}. ${CONFIRM_NOTE}`;
@@ -121,6 +137,7 @@ export function createServer(env: Env): McpServer {
     if (answer.alternatives.length) {
       lines.push("Other options:", ...answer.alternatives.map((o) => `  – ${fmtOccurrence(o)}`));
     }
+    lines.push(...specialDayNotes([answer.soonest, answer.nearest, ...answer.alternatives].filter((x): x is OccurrencePayload => x !== null)));
     lines.push(footer(answer.soonest.church.source.last_updated));
     return result(lines.join("\n"), { location: place, ...answer });
   });
@@ -168,7 +185,7 @@ export function createServer(env: Env): McpServer {
     }
     const label = args.kind && args.kind !== "mass" ? args.kind : "Mass";
     const text = occ.length
-      ? [`${label} near ${place.label}:`, ...occ.map((o) => `• ${fmtOccurrence(o)}`), footer()].join("\n")
+      ? [`${label} near ${place.label}:`, ...occ.map((o) => `• ${fmtOccurrence(o)}`), ...specialDayNotes(occ), footer()].join("\n")
       : `No ${label} found near ${place.label} for that time. Try a wider radius or another day. ${footer()}`;
     return result(text, { location: place, results: occ });
   });

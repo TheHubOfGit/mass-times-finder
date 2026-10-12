@@ -167,6 +167,19 @@ export function upcomingQuery(f: Filters, loc: { lat: number; lng: number }) {
   }
 }
 
+/** The local dates a filter set shows (for special-day banners). */
+export function datesInView(f: Filters): string[] {
+  const today = localToday();
+  switch (f.when) {
+    case "soon": return [today, addDays(today, 1)];
+    case "today": return [today];
+    case "tomorrow": return [addDays(today, 1)];
+    case "sunday": { const sun = nextWeekday(0, today); return [addDays(sun, -1), sun]; }
+    case "date": return [f.date ?? today];
+    case "holyday": { const d = f.date ?? today; return [addDays(d, -1), d]; }
+  }
+}
+
 // ---------- context ----------
 
 interface Store extends State {

@@ -1,4 +1,5 @@
 // Expands a church's weekly schedule into concrete occurrences.
+import { holidayTags, namedDays, noteAllows } from "./seasonal";
 // All schedule times are local wall-clock times in the church's own time zone.
 
 export type ServiceKind = "mass" | "confession" | "adoration" | "devotion" | "other";
@@ -24,6 +25,10 @@ export interface Occurrence {
   localStart: string; // HH:MM
   localEnd: string | null;
   holyDay: string | null; // name of the holy day this occurrence is for
+  /** The special day this falls on (Christmas, Good Friday, a holy day…), if any. */
+  specialDay: string | null;
+  /** Comes from the parish's regular weekly schedule on a special day: holiday times may differ. */
+  regularSchedule: boolean;
   seasonal: boolean; // has a free-text note that may limit when it applies
   inProgress: boolean; // started before `from` but hasn't ended (confession, adoration)
 }
@@ -180,6 +185,42 @@ function toMinutes(hhmm: string): number {
   return h * 60 + m;
 }
 
+/** Days when parishes run special schedules, by seasonal tag → display name. */
+const SPECIAL_DAY_NAMES: Record<string, string> = {
+  "christmas eve": "Christmas Eve",
+  christmas: "Christmas",
+  "ash wednesday": "Ash Wednesday",
+  "holy thursday": "Holy Thursday",
+  "good friday": "Good Friday",
+  "holy saturday": "Holy Saturday",
+  easter: "Easter Sunday",
+  thanksgiving: "Thanksgiving",
+};
+/** On these days the Church's own rules rule out regular weekday Masses. */
+const NO_REGULAR_WEEKDAY_MASS = new Set(["holy thursday", "good friday", "holy saturday"]);
+
+export interface SpecialDay {
+  date: string;
+  name: string;
+  kind: "holy_day" | "feast";
+  obligatory: boolean;
+}
+
+/** Special days (holy days not on a Sunday, plus Christmas Eve, Ash Wednesday, the Triduum, Easter, Thanksgiving). */
+export function specialDaysBetween(from: string, to: string): SpecialDay[] {
+  const out = new Map<string, SpecialDay>();
+  for (const h of holyDayList(from, to)) {
+    if (!h.onSunday) out.set(h.date, { date: h.date, name: h.name, kind: "holy_day", obligatory: h.obligatory });
+  }
+  for (let y = +from.slice(0, 4); y <= +to.slice(0, 4); y++) {
+    for (const [tag, date] of namedDays(y)) {
+      const name = SPECIAL_DAY_NAMES[tag];
+      if (name && date >= from && date <= to && !out.has(date)) out.set(date, { date, name, kind: "feast", obligatory: tag === "easter" });
+    }
+  }
+  return [...out.values()].sort((a, b) => a.date.localeCompare(b.date));
+}
+
 interface CalendarDay {
   date: string;
   y: number;
@@ -189,6 +230,9 @@ interface CalendarDay {
   holy: string | null; // holy day on this date
   holyTomorrow: string | null; // holy day on the next date (for vigils)
   next: string; // following date, for services that end after midnight
+  tags: Set<string>; // holiday tags (seasonal.ts), plus "holy day"
+  special: string | null; // display name of a special day, if this is one
+  noRegularWeekdayMass: boolean;
 }
 
 const calendarCache = new Map<string, CalendarDay[]>();
@@ -205,7 +249,16 @@ function calendar(today: string, horizon: number, ascensionThursday: boolean): C
   for (let date = first; date <= last; date = addDays(date, 1)) {
     const [y, m, d] = date.split("-").map(Number);
     const next = addDays(date, 1);
-    days.push({ date, y, m, d, dow: weekdayOf(date), holy: holy.get(date) ?? null, holyTomorrow: holy.get(next) ?? null, next });
+    const dow = weekdayOf(date);
+    const holyName = holy.get(date) ?? null;
+    const tags = new Set(holidayTags(date));
+    if (holyName) tags.add("holy day");
+    const specialTag = [...tags].find((t) => SPECIAL_DAY_NAMES[t]);
+    const special = specialTag ? SPECIAL_DAY_NAMES[specialTag] : holyName && dow !== 0 ? holyName : null;
+    days.push({
+      date, y, m, d, dow, holy: holyName, holyTomorrow: holy.get(next) ?? null, next, tags, special,
+      noRegularWeekdayMass: [...tags].some((t) => NO_REGULAR_WEEKDAY_MASS.has(t)),
+    });
   }
   if (calendarCache.size > 100) calendarCache.clear();
   calendarCache.set(key, days);
@@ -242,6 +295,10 @@ export function expandSchedule(services: Service[], timeZone: string, opts: Expa
       if (s.days.length && !s.days.includes(day.dow)) continue;
       let holyDay: string | null = null;
       if (replacedOnHolyDays && day.holy && day.dow !== 0 && holyRowsByDow.has(day.dow)) continue;
+      // Holy Thursday, Good Friday, Holy Saturday: no regular weekday Masses (the Saturday-evening vigil slot stays, flagged).
+      if (day.noRegularWeekdayMass && s.kind === "mass" && !s.holy_day && !(day.dow === 6 && s.source_type === "Weekend")) continue;
+      // The parish's own note: "First Fri.", "Except in July & August", "Suppressed December 24 to January 1"…
+      if (s.comment && !noteAllows(s.comment, day)) continue;
       if (s.vigil) {
         holyDay = day.holyTomorrow; // the evening before a holy day
         if (!holyDay) continue;
@@ -266,7 +323,8 @@ export function expandSchedule(services: Service[], timeZone: string, opts: Expa
       if (startMs < fromMs && !inProgress) continue;
       out.push({
         service: s, start, end, localDate: day.date, localStart: s.start, localEnd: s.end,
-        holyDay, seasonal: Boolean(s.comment), inProgress,
+        holyDay, specialDay: day.special, regularSchedule: day.special !== null && !s.holy_day && !s.vigil,
+        seasonal: Boolean(s.comment), inProgress,
       });
     }
   }
