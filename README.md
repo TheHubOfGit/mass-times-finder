@@ -1,4 +1,4 @@
-# Mass Times Finder
+# <img src="web/public/icon-512.png" width="44" height="44" align="absmiddle" alt="Mass Times Finder icon" /> Mass Times Finder
 
 **Live:** https://masstimes.pages.dev · MCP: `https://masstimes.pages.dev/mcp`
 
